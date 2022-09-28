@@ -24,7 +24,6 @@ class UsersTableSeeder extends Seeder
                 'email' => strtolower(str_replace(' ', '.', $person)).'@example.com',
                 'password' => bcrypt('secret'),
                 'phone' => '01234567',
-                'photo' => '1.jpg',
                 'type_id' => 2,
             ]);
         }
@@ -34,7 +33,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'normal@example.com',
             'password' => bcrypt('normal'),
             'phone' => '01234567',
-            'photo' => '1.jpg',
             'type_id' => 2,
         ]);
 
@@ -43,7 +41,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('admin'),
             'phone' => '01234567',
-            'photo' => '1.jpg',
             'type_id' => 1,
         ]);
     }
