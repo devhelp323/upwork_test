@@ -34,7 +34,8 @@
     "laravel/ui": "^3.2",
     "pusher/pusher-php-server": "~6.1",
     "rebing/graphql-laravel": "^7.2",
-    "spatie/laravel-http-logger": "^1.7"
+    "spatie/laravel-http-logger": "^1.7",
+    "tzsk/sms": "^5.4"
   },
   "require-dev": {
     "alefesouza/laravel-vue-i18n-generator": "^0.2",

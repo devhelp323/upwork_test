@@ -5,10 +5,11 @@ namespace App\Http\Controllers\Resources;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Notifications\PrivateMessageNotification;
+use App\Notifications\UserDeletedNotification;
 use App\User;
 use App\Util\Utils;
 use Response;
+use Tzsk\Sms\Facades\Sms;
 
 class UserController extends Controller
 {
@@ -44,7 +45,7 @@ class UserController extends Controller
 
         $user = User::create($input);
 
-        $user->sendSMS('Your account was just created in Laravel test website');
+        Sms::via('gateway')->send("Your account had been created on our site")->to([$user->phone])->dispatch();
 
         return response()->json($user, 201);
     }
@@ -88,9 +89,9 @@ class UserController extends Controller
     {
         $user->delete();
 
-        $user->sendSMS('Your account was removed by admin');
+        Sms::via('gateway')->send("Your account had been deleted on our site")->to([$user->phone])->dispatch();
 
-        $user->notify(new PrivateMessageNotification('Your account was removed by admin'));
+        $user->notify(new UserDeletedNotification());
 
         return response()->json(null, 204);
     }

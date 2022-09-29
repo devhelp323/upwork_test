@@ -56,13 +56,5 @@ class User extends Authenticatable
             return 'example'; // TODO change
         }
     }
-
-    public function sendSMS($content) {
-        $msg = [
-            'to'      => $this->phone,
-            'content' => $content,
-        ];
-        $sms = app()['sms'];
-        $sms->send($msg);
-    }
+    
 }
