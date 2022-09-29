@@ -35,10 +35,11 @@ class UserController extends Controller
         $input = $request->except(['photo']);
         $input['password'] = bcrypt($input['password']);
 
-        if($request->hasFile('photo')) {
-            $filename = $request->photo->getClientOriginalName();
-            $request->photo->storeAs('images', $filename, 'public');
-            $input['photo'] = $filename;
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $randName = $photo->hashName();
+            $photo->storeAs('avatars', $randName, 'public');
+            $input['photo'] = 'avatars/' . $randName;
         }
 
         $user = User::create($input);
@@ -65,10 +66,11 @@ class UserController extends Controller
             $input['password'] = bcrypt($input['password']);
         }
 
-        if($request->hasFile('photo')) {
-            $filename = $request->photo->getClientOriginalName();
-            $request->photo->storeAs('images', $filename, 'public');
-            $input['photo'] = $filename;
+        if ($request->hasFile('photo')) {
+            $photo = $request->file('photo');
+            $randName = $photo->hashName();
+            $photo->storeAs('avatars', $randName, 'public');
+            $input['photo'] = 'avatars/' . $randName;
         }
 
         $user->update($input);
